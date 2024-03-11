@@ -7,7 +7,12 @@ class Producer extends Thread {
 
 	public void run() {
 		for (int i = 0; i < 10; i++) {
-			buffer.Put((char) ('A' + i % 26));
+			try {
+				buffer.Put((char) ('A' + i % 26));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
@@ -21,7 +26,12 @@ class Consumer extends Thread {
 
 	public void run() {
 		for (int i = 0; i < 10; i++) {
-			buffer.Get();
+			try {
+				buffer.Get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
